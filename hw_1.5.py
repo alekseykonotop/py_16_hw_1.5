@@ -29,3 +29,20 @@ group = {
 
 
 #  print('Студент {0} {1} получил на экзамене {2} баллов'.format(group[10001]['surname'], group[10001]['name'], group[10001]['exam_score']))
+# 1.
+# Среднюю оценку за домашние задания и за экзамен по всем группе в следующем виде:
+# Средняя оценка за домашние задания по группе: X
+# Средняя оценка за экзамен: Y
+
+#  Получим среднюю оценкц за дз по всем во группе
+def get_average_score_homework():
+    all_scores_list = []
+    for student_data in group.values():
+        for score in student_data['hw_score']:
+            all_scores_list.append(score)  #  Получили список всех оценок для последующей обработки
+
+    # print('Список всех оценой за ДЗ: {}'.format(all_scores_list))
+    # print('sum: ', sum(all_scores_list))
+    print('Средняя оценка за домашние задания по группе: {0}'.format(sum(all_scores_list)/len(all_scores_list)))
+
+get_average_score_homework()
