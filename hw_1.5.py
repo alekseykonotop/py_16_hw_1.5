@@ -33,31 +33,84 @@ group = {
 # Среднюю оценку за домашние задания и за экзамен по всем группе в следующем виде:
 # Средняя оценка за домашние задания по группе: X
 # Средняя оценка за экзамен: Y
+#
+sex_dict = {'male': 'мужчин', 'female': 'женщин'}  # Словарь для вывода результатов вычислений
 
 
-def get_average_score(type_score):
-    """Функция получает на вход значение ключа, если он 'hw_score',
-    то функция проходится по каждому списку и прибавляет его элементы
-    к общему списку all_scores_list.
-    Если значение 'exam_score', то функция сразу прибавляет значеник к all_scores_list.
+def get_average_score(type_score, sex_type='all', experience='not_matter'):
+    """Функция одновременно принимает от одного до 2-х аргументов.
+
+    При передаче только type_score производится расчет среднего значение оценки по ДЗ и
+    экзамену по всей группе. При приеме type_score и sex_type производится расчет
+    среднего значение оценки по ДЗ и экзамену с учетом пола.
+    При приеме type_score и experience производиться расчет средней оценки по
+    ДЗ и экзамену с учетом опыта.
     """
 
     all_scores_list = []
-    if type_score == 'hw_score':
-        for student_data in group.values():
-            for score in student_data[type_score]:
-                all_scores_list.append(score)  # Получили список всех оценок за ДЗ
-        print('Средняя оценка за домашние задания по группе: {0}'.format(sum(all_scores_list) / len(all_scores_list)))
-    elif type_score == 'exam_score':
-        for student_data in group.values():
-            all_scores_list.append(student_data[type_score])  # Получили список всех оценок за экзамены
-        print('Средняя оценка за экзамен: {0}'.format(sum(all_scores_list) / len(all_scores_list)))
+    # Подсчет среднего значение оценки по ДЗ и экзамену по всей группе
+    if sex_type == 'all':
+        if type_score == 'hw_score' and experience == 'not_matter':
+            for student_data in group.values():
+                for score in student_data[type_score]:
+                    all_scores_list.append(score)  # Получили список всех оценок за ДЗ
+            print('Средняя оценка за домашние задания по группе: {0:.2}'.format(sum(all_scores_list) / len(all_scores_list)))
 
+        elif type_score == 'exam_score' and experience == 'not_matter':
+            for student_data in group.values():
+                all_scores_list.append(student_data[type_score])  # Получили список всех оценок за экзамены
+            print('Средняя оценка за экзамен: {0:.2}'.format(sum(all_scores_list) / len(all_scores_list)))
+
+    # Подсчет среднего значение оценки по ДЗ и экзамену с учетом пола
+    else:
+        if type_score == 'hw_score':
+            for student_data in group.values():
+                if student_data['sex'] == sex_type:
+                    for score in student_data[type_score]:
+                        all_scores_list.append(score)  # Получили список всех оценок за ДЗ по конкретному полу
+            print(
+                'Средняя оценка за домашние задания у {0}: {1:.2}'.format(sex_dict[sex_type], sum(all_scores_list) / len(all_scores_list)))
+
+        elif type_score == 'exam_score':
+            for student_data in group.values():
+                if student_data['sex'] == sex_type:
+                    all_scores_list.append(student_data[type_score])  # Получили список всех оценок за экзамены по конкретному полу
+            print('Средняя оценка за экзамен у {0}: {1:.2}'.format(sex_dict[sex_type], sum(all_scores_list) / len(all_scores_list)))
+
+    # Подсчет средней оценки по ДЗ и экзамену с учетом опыта
+    if type_score == 'hw_score' and experience != 'not_matter':
+        for student_data in group.values():
+            if student_data['it_experience'] == experience:
+                for score in student_data[type_score]:
+                    all_scores_list.append(score)  # Получили список всех оценок за ДЗ по указанному опыту
+        if experience:
+            print('Средняя оценка за домашние задания у студентов с опытом: {0:.2}'.format(sum(all_scores_list) / len(all_scores_list)))
+        else:
+            print('Средняя оценка за домашние задания у студентов без опыта: {0:.2}'.format(sum(all_scores_list) / len(all_scores_list)))
+
+    elif type_score == 'exam_score' and experience != 'not_matter':
+        for student_data in group.values():
+            if student_data['it_experience'] == experience:
+                all_scores_list.append(student_data[type_score])  # Получили список всех оценок за экзамены с учетом опыта
+        if experience:
+            print('Средняя оценка за экзамен у студентов с опытом: {0:.2}'.format(sum(all_scores_list) / len(all_scores_list)))
+        else:
+            print('Средняя оценка за экзамен у студентов без опыта: {0:.2}'.format(sum(all_scores_list) / len(all_scores_list)))
+
+
+get_average_score('hw_score')
 get_average_score('exam_score')
-
-
-    # print('Список всех оценой за ДЗ: {}'.format(all_scores_list))
-    # print('sum: ', sum(all_scores_list))
-    # print('Средняя оценка за домашние задания по группе: {0}'.format(sum(all_scores_list)/len(all_scores_list)))
+print('=====')
+get_average_score('hw_score', sex_type='male')
+get_average_score('exam_score', sex_type='male')
+print('-----')
+get_average_score('hw_score', sex_type='female')
+get_average_score('exam_score', sex_type='female')
+print('=====')
+get_average_score('hw_score', experience=True)
+get_average_score('exam_score', experience=True)
+print('-----')
+get_average_score('hw_score', experience=False)
+get_average_score('exam_score', experience=False)
 
 
