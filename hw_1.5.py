@@ -34,15 +34,30 @@ group = {
 # Средняя оценка за домашние задания по группе: X
 # Средняя оценка за экзамен: Y
 
-#  Получим среднюю оценкц за дз по всем во группе
-def get_average_score_homework():
+
+def get_average_score(type_score):
+    """Функция получает на вход значение ключа, если он 'hw_score',
+    то функция проходится по каждому списку и прибавляет его элементы
+    к общему списку all_scores_list.
+    Если значение 'exam_score', то функция сразу прибавляет значеник к all_scores_list.
+    """
+
     all_scores_list = []
-    for student_data in group.values():
-        for score in student_data['hw_score']:
-            all_scores_list.append(score)  #  Получили список всех оценок для последующей обработки
+    if type_score == 'hw_score':
+        for student_data in group.values():
+            for score in student_data[type_score]:
+                all_scores_list.append(score)  # Получили список всех оценок за ДЗ
+        print('Средняя оценка за домашние задания по группе: {0}'.format(sum(all_scores_list) / len(all_scores_list)))
+    elif type_score == 'exam_score':
+        for student_data in group.values():
+            all_scores_list.append(student_data[type_score])  # Получили список всех оценок за экзамены
+        print('Средняя оценка за экзамен: {0}'.format(sum(all_scores_list) / len(all_scores_list)))
+
+get_average_score('exam_score')
+
 
     # print('Список всех оценой за ДЗ: {}'.format(all_scores_list))
     # print('sum: ', sum(all_scores_list))
-    print('Средняя оценка за домашние задания по группе: {0}'.format(sum(all_scores_list)/len(all_scores_list)))
+    # print('Средняя оценка за домашние задания по группе: {0}'.format(sum(all_scores_list)/len(all_scores_list)))
 
-get_average_score_homework()
+
