@@ -154,8 +154,6 @@ def get_name_best_students():
             ('Лучший студент:\n {} с интегральной оценкой {}\n').format(best_student_name, best_students_number[0][0]))
     return
 
-# get_name_best_students()
-
 
 def main_def():
     while True:
