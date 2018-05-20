@@ -2,34 +2,34 @@
 
 dict_of_students = {
     10001: {
-        'first_name': 'Максим', 'last_name': 'Волков', 'sex': 'male', 'it_experience': True, 'regular_score': [7, 8, 7, 8, 9], 'exam_score': 9
+        'first_name': 'Максим', 'last_name': 'Волков', 'sex': 'male', 'experience': True, 'regular_score': [7, 8, 7, 8, 9], 'exam_score': 9
     },
     10002: {
-        'first_name': 'Александр', 'last_name': 'Щербаков', 'sex': 'male', 'it_experience': False, 'regular_score': [6, 7, 5, 6, 6], 'exam_score': 7
+        'first_name': 'Александр', 'last_name': 'Щербаков', 'sex': 'male', 'experience': False, 'regular_score': [6, 7, 5, 6, 6], 'exam_score': 7
     },
     10003: {
-        'first_name': 'Алексей', 'last_name': 'Чернов', 'sex': 'male', 'it_experience': True, 'regular_score': [6, 9, 5, 8, 8], 'exam_score': 8
+        'first_name': 'Алексей', 'last_name': 'Чернов', 'sex': 'male', 'experience': True, 'regular_score': [6, 9, 5, 8, 8], 'exam_score': 8
     },
     10004: {
-        'first_name': 'Виктория', 'last_name': 'Новикова', 'sex': 'female', 'it_experience': False, 'regular_score': [5, 6, 5, 6, 6], 'exam_score': 6
+        'first_name': 'Виктория', 'last_name': 'Новикова', 'sex': 'female', 'experience': False, 'regular_score': [5, 6, 5, 6, 6], 'exam_score': 6
     },
     10005: {
-        'first_name': 'Анна', 'last_name': 'Епифанова', 'sex': 'female', 'it_experience': True, 'regular_score': [7, 6, 8, 7, 7], 'exam_score': 7
+        'first_name': 'Анна', 'last_name': 'Епифанова', 'sex': 'female', 'experience': True, 'regular_score': [7, 6, 8, 7, 7], 'exam_score': 7
     },
     10006: {
-        'first_name': 'Елена', 'last_name': 'Краснова', 'sex': 'female', 'it_experience': False, 'regular_score': [5, 7, 6, 6, 5], 'exam_score': 7
+        'first_name': 'Елена', 'last_name': 'Краснова', 'sex': 'female', 'experience': False, 'regular_score': [5, 7, 6, 6, 5], 'exam_score': 7
     },
     10007: {
-        'first_name': 'Андрей', 'last_name': 'Златарев', 'sex': 'male', 'it_experience': True, 'regular_score': [8, 8, 8, 7, 7], 'exam_score': 8
+        'first_name': 'Андрей', 'last_name': 'Златарев', 'sex': 'male', 'experience': True, 'regular_score': [8, 8, 8, 7, 7], 'exam_score': 8
     },
     10008: {
-        'first_name': 'Сергей', 'last_name': 'Полывяный', 'sex': 'male', 'it_experience': False, 'regular_score': [6, 6, 5, 5, 7], 'exam_score': 7
+        'first_name': 'Сергей', 'last_name': 'Полывяный', 'sex': 'male', 'experience': False, 'regular_score': [6, 6, 5, 5, 7], 'exam_score': 7
     },
     10009: {
-        'first_name': 'Ольга', 'last_name': 'Ершова', 'sex': 'female', 'it_experience': True, 'regular_score': [7, 7, 7, 7, 7], 'exam_score': 8
+        'first_name': 'Ольга', 'last_name': 'Ершова', 'sex': 'female', 'experience': True, 'regular_score': [7, 7, 7, 7, 7], 'exam_score': 8
     },
     10010: {
-        'first_name': 'Михаил', 'last_name': 'Токовинин', 'sex': 'male', 'it_experience': True, 'regular_score': [9, 9, 8, 8, 8], 'exam_score': 9
+        'first_name': 'Михаил', 'last_name': 'Токовинин', 'sex': 'male', 'experience': True, 'regular_score': [9, 9, 8, 8, 8], 'exam_score': 9
     }
 }
 
@@ -53,11 +53,18 @@ def mark_average_count_in_group(mark_type):
     if len(marks_list) == 0:
         print('Подсчет невозможен.')
     else:
-        print(('Средняя оценка по {} в группе: {}\n').format(mark_type, round(sum(marks_list)/ len(marks_list), 2)))
+        print(('Средняя оценка по {} в группе: {}').format(mark_type, round(sum(marks_list)/ len(marks_list), 2)))
 
 
 gender_dict = {'муж': 'male', 'жен': 'female'}  # Этот словарь необходим для функции подсчета оценок с учетом пола
 gender_input_dict = {'муж': 'мужчинам', 'жен': 'женщинам'}
+
+
+def run_mark_average_count_in_group():
+    marks_type = ['дз', 'экз']
+    for mark_type in marks_type:
+        mark_average_count_in_group(mark_type)
+    print('=====| Результаты получены |=====')
 
 
 def mark_average_count_in_group_gender_of_student(sex_type, mark_type):
@@ -79,13 +86,16 @@ def mark_average_count_in_group_gender_of_student(sex_type, mark_type):
     if len(marks_list) == 0:
         print('Подсчет невозможен.')
     else:
-        print('Средняя оценка по {0} за {1} в группе {2}\n'.format(gender_input_dict[sex_type], mark_type,
+        print('Средняя оценка по {0} за {1} в группе {2}'.format(gender_input_dict[sex_type], mark_type,
                                                                    round(sum(marks_list)/ len(marks_list), 2)))
 
 def run_mark_average_count_in_group_gender_of_student():
-    sex_type = input('Введите пол студента (муж/жен)').lower()
-    mark_type = input('Введите тип работы (дз/экз):').lower()
-    mark_average_count_in_group_gender_of_student(sex_type, mark_type)
+    sex_type = ['муж', 'жен']
+    marks_type = ['дз', 'экз']
+    for gender in sex_type:
+        for mark_type in marks_type:
+            mark_average_count_in_group_gender_of_student(gender, mark_type)
+    print('=====| Результаты получены |=====')
 
 
 experience_dict = {'с опытом': True, 'без опыта': False}  # Словарь для подсчета среднего значение с учетом опыта
@@ -108,15 +118,17 @@ def mark_average_count_in_group_based_on_experience(experience_value, mark_type)
     if len(marks_list) == 0:
         print('Подсчет невозможен.')
     else:
-        print(('Средняя оценка студентов {} по {} в группе {}\n').format(experience_value, mark_type,
+        print(('Средняя оценка студентов {} по {} в группе {}').format(experience_value, mark_type,
                                                                          round(sum(marks_list)/ len(marks_list), 2)))
 
 
 def run_mark_average_count_in_group_based_on_experience():
-    experience_value = input('Выберите наличие опыта (с опытом/без опыта)').lower()
-    mark_type = input('Введите тип работы (дз/экз):').lower()
-    mark_average_count_in_group_based_on_experience(experience_value, mark_type)
-
+    experience_list = ['с опытом', 'без опыта']
+    marks_type = ['дз', 'экз']
+    for experience_val in experience_list:
+        for mark_type in marks_type:
+            mark_average_count_in_group_based_on_experience(experience_val, mark_type)
+    print('=====| Результаты получены |=====')
 
 def get_integral_score():
     d = {}
@@ -158,14 +170,14 @@ def get_name_best_students():
 def main_def():
     while True:
         user_choice = input('''Выберите действие:
-t - узнать среднюю оценку за ДЗ или экзамен; 
-g - узнать среднюю оценку за ДЗ или экзамен с учетом пола студента;
-e - узнать среднюю оценку за ДЗ или экзамен с учетом опыта студента;
-b - определить лучшего студента;
+t - узнать среднюю оценку за ДЗ и экзамен; 
+g - узнать среднюю оценку за ДЗ и экзамен с учетом пола студента;
+e - узнать среднюю оценку за ДЗ и экзамен с учетом опыта студента;
+b - определить лучшего студента(-ов);
 q - выход
 Введите ваш выбор тут: \n''').lower()
         if user_choice == 't':
-            mark_average_count_in_group(input("Введите тип работы (дз/экз):").lower())
+            run_mark_average_count_in_group()
         elif user_choice == 'g':
             run_mark_average_count_in_group_gender_of_student()
         elif user_choice == 'e':
