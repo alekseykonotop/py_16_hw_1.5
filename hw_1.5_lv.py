@@ -26,7 +26,7 @@ dict_of_students = {
         'first_name': 'Сергей', 'last_name': 'Полывяный', 'sex': 'male', 'experience': False, 'regular_score': [6, 6, 5, 5, 7], 'exam_score': 7
     },
     10009: {
-        'first_name': 'Ольга', 'last_name': 'Ершова', 'sex': 'female', 'experience': True, 'regular_score': [7, 7, 7, 7, 7], 'exam_score': 8
+        'first_name': 'Ольга', 'last_name': 'Ершова', 'sex': 'female', 'experience': True, 'regular_score': [9, 9, 8, 8, 8], 'exam_score': 9
     },
     10010: {
         'first_name': 'Михаил', 'last_name': 'Токовинин', 'sex': 'male', 'experience': True, 'regular_score': [9, 9, 8, 8, 8], 'exam_score': 9
@@ -64,7 +64,7 @@ def run_mark_average_count_in_group():
     marks_type = ['дз', 'экз']
     for mark_type in marks_type:
         mark_average_count_in_group(mark_type)
-    print('=====| Результаты получены |=====')
+    print('=====| Результаты получены |=====\n')
 
 
 def mark_average_count_in_group_gender_of_student(sex_type, mark_type):
@@ -95,7 +95,7 @@ def run_mark_average_count_in_group_gender_of_student():
     for gender in sex_type:
         for mark_type in marks_type:
             mark_average_count_in_group_gender_of_student(gender, mark_type)
-    print('=====| Результаты получены |=====')
+    print('=====| Результаты получены |=====\n')
 
 
 experience_dict = {'с опытом': True, 'без опыта': False}  # Словарь для подсчета среднего значение с учетом опыта
@@ -128,7 +128,7 @@ def run_mark_average_count_in_group_based_on_experience():
     for experience_val in experience_list:
         for mark_type in marks_type:
             mark_average_count_in_group_based_on_experience(experience_val, mark_type)
-    print('=====| Результаты получены |=====')
+    print('=====| Результаты получены |=====\n')
 
 def get_integral_score():
     d = {}
